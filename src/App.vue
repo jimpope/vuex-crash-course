@@ -4,6 +4,7 @@
       <AddTodo />
       <FilterTodos />
       <Todos />
+      <DriverInfo />
     </div>
   </div>
 </template>
@@ -12,13 +13,16 @@
 import Todos from './components/Todos.vue'
 import AddTodo from './components/AddTodo.vue'
 import FilterTodos from './components/FilterTodos.vue'
+import DriverInfo from './components/DriverInfo.vue'
+
 
 export default {
   name: 'App',
   components: {
     Todos,
     AddTodo,
-    FilterTodos
+    FilterTodos,
+    DriverInfo
   }
 }
 </script>

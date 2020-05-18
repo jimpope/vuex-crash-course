@@ -1,16 +1,27 @@
 import Axios from "axios";
 
 const state = {
-    todos: []
+    todos: [],
+    driverInfo: ''
 };
 
 const getters = {
     allTodos: (state) => {
         return state.todos;
+    },
+    driverInfo: (state) => {
+        return state.driverInfo
     }
 };
 
+//Axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
 const actions = {
+    async fetchDriverInfo({commit}){
+        const response = await Axios.get('http://lnaphoeaz11.swift.com/driverservices/mentorapplication.nsf/jsondriver?openagent&id=FINGR');
+
+        commit('setDriverInfo', response.data);
+    },
     async fetchTodos({commit}) {
         const response = await Axios.get('http://jsonplaceholder.typicode.com/todos');
 
@@ -46,6 +57,7 @@ const actions = {
 
 const mutations = {
     setTodos: (state, todos) => (state.todos = todos),
+    setDriverInfo: (state, driverInfo) => (state.driverInfo = driverInfo),
     newTodo: (state, todo) => state.todos.unshift(todo),
     removeTodo: (state, id) => state.todos = state.todos.filter(todo => todo.id !== id),
     updateTodo: (state, updTodo) => {
